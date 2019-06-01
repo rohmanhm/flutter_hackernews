@@ -43,13 +43,14 @@ class TopNavButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onPressed,
-        child: Container(
-          child: Text(
-            this.text,
-            style: Theme.of(context).textTheme.button,
-          ),
-          padding: EdgeInsets.all(10.0),
-        ));
+      onTap: onPressed,
+      child: Container(
+        child: Text(
+          this.text,
+          style: Theme.of(context).textTheme.button,
+        ),
+        padding: EdgeInsets.all(10.0),
+      ),
+    );
   }
 }
