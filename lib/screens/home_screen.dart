@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+/* Constants */
+import 'package:flutter_hackernews/constants/routes.dart';
+/* Widgets */
 import 'package:flutter_hackernews/widgets/topnav.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +13,7 @@ class HomeScreen extends StatelessWidget {
         RaisedButton(
           child: Text("Go To Detail"),
           onPressed: () {
-            Navigator.pushNamed(context, '/article');
+            Navigator.pushNamed(context, ROUTE_ARTICLE);
           },
         ),
       ]),
