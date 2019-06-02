@@ -6,7 +6,7 @@ class ArticleScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Article"),
-        backgroundColor: Theme.of(context).appBarTheme.color,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(children: <Widget>[
         RaisedButton(

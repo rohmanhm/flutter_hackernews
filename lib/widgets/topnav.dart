@@ -11,11 +11,13 @@ class TopNavAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color primaryColor = Theme.of(context).primaryColor;
+
     return Container(
       padding: EdgeInsets.only(top: 30, bottom: 10, left: 10, right: 10),
       width: double.infinity,
       height: 80.0,
-      decoration: BoxDecoration(color: Colors.deepOrange),
+      decoration: BoxDecoration(color: primaryColor),
       child: Row(
         children: <Widget>[
           TopNavButton(

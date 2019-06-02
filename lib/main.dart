@@ -9,10 +9,10 @@ class HackernewsApp extends StatelessWidget {
     return MaterialApp(
       title: "Hackernews App",
       theme: ThemeData(
+        primaryColor: Colors.deepOrange,
         textTheme: TextTheme(
           button: TextStyle(color: Colors.white),
         ),
-        appBarTheme: AppBarTheme(color: Colors.deepOrange),
       ),
       routes: Routes.routes,
     );
