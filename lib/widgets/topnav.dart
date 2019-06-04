@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 
-class TopNavAppBar extends StatelessWidget {
-  _onNavMenuTopPressed() {
-    print("Top nav menu pressed");
-  }
+enum TabActive { Top, New, Ask }
 
-  _onNavMenuNewPressed() {
-    print("New nav menu pressed");
+class TopNavAppBar extends StatefulWidget {
+  TopNavAppBar({this.onTabActiveChange});
+
+  final Function onTabActiveChange;
+
+  @override
+  _TopNavAppBarState createState() => _TopNavAppBarState();
+}
+
+class _TopNavAppBarState extends State<TopNavAppBar> {
+  TabActive tabActive = TabActive.Top;
+
+  void onTabChange(TabActive activeTab, value) {
+    widget.onTabActiveChange(value);
+    setState(() {
+      tabActive = activeTab;
+    });
   }
 
   @override
@@ -22,11 +34,24 @@ class TopNavAppBar extends StatelessWidget {
         children: <Widget>[
           TopNavButton(
             text: "Top",
-            onPressed: this._onNavMenuTopPressed,
+            isActive: tabActive == TabActive.Top,
+            onPressed: (value) {
+              this.onTabChange(TabActive.Top, value);
+            },
           ),
           TopNavButton(
             text: "New",
-            onPressed: this._onNavMenuNewPressed,
+            isActive: tabActive == TabActive.New,
+            onPressed: (value) {
+              this.onTabChange(TabActive.New, value);
+            },
+          ),
+          TopNavButton(
+            text: "Ask",
+            isActive: tabActive == TabActive.Ask,
+            onPressed: (value) {
+              this.onTabChange(TabActive.Ask, value);
+            },
           ),
         ],
       ),
@@ -40,18 +65,22 @@ class TopNavButton extends StatelessWidget {
   final bool isActive;
   final String text;
   // Action onPressed
-  final VoidCallback onPressed;
+  final Function onPressed;
+
+  _handleButtonPressed() {
+    this.onPressed(text);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        child: Text(
-          this.text,
-          style: Theme.of(context).textTheme.button,
-        ),
-        padding: EdgeInsets.all(10.0),
+    return FlatButton(
+      onPressed: this._handleButtonPressed,
+      child: Text(
+        text,
+        style: Theme.of(context)
+            .textTheme
+            .button
+            .copyWith(fontWeight: isActive ? FontWeight.w900 : FontWeight.w300),
       ),
     );
   }
