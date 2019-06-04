@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hackernews/screens/article_screen.dart';
 
 class Posts extends StatelessWidget {
   Posts({Key key, this.page, this.topic});
@@ -24,19 +25,29 @@ class Posts extends StatelessWidget {
 
   Widget _itemBuilder(BuildContext context, int index) {
     var android = androidVersions[index];
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              '$topic $android',
-              textAlign: TextAlign.left,
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ArticleScreen(title: android),
           ),
-        ],
+        );
+      },
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                '$topic $android',
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
